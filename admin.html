@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Login</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .login_container {
+      max-width: 350px;
+      background-color: #fff;
+      margin: 100px auto;
+      padding: 40px 30px 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      position: relative;
+      animation: fadeInUp 0.6s ease-in-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    h2 {
+      background-color: #007bff;
+      text-align: center;
+      color: white;
+      padding: 12px 0;
+      margin: -40px -30px 30px -30px;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+      font-size: 20px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 20px;
+    }
+
+    .field label {
+      margin-bottom: 6px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .field input {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      transition: border-color 0.3s;
+    }
+
+    .field input:focus {
+      border-color: #007bff;
+      outline: none;
+      box-shadow: 0 0 4px rgba(0, 123, 255, 0.4);
+    }
+
+    .forgot-password {
+      text-align: left;
+      margin-top: -15px;
+      margin-bottom: 20px;
+    }
+
+    .forgot-password a {
+      font-size: 13px;
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    .forgot-password a:hover {
+      text-decoration: underline;
+    }
+
+    .login_button {
+      display: flex;
+      justify-content: center;
+    }
+
+    .login_button button {
+      background-color: #add8e6;
+      border: none;
+      padding: 10px 25px;
+      font-size: 16px;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s;
+    }
+
+    .login_button button:hover {
+      background-color: #007bff;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+<form action="login.php" method="POST">
+  <div class="login_container">
+    <h2>Admin Login</h2>
+
+   <div class="field">
+  <label>Username</label>
+  <input type="text" id="username" name="UserName" placeholder="Enter your username">
+</div>
+
+    <div class="field">
+      <label>Password</label>
+      <input type="password" name="Password" placeholder="Enter your password">
+    </div>
+
+<div class="forgot-password">
+  <a href="#" onclick="goToResetPage()">Forgot Password?</a>
+</div>
+
+
+    <div class="login_button">
+      <button type="submit">Login</button>
+    </div>
+  </div>
+</form>
+
+<script>
+  function goToResetPage() {
+    const username = document.getElementById("username").value.trim();
+
+    if (!username) {
+      alert("Please enter your username first.");
+      return;
+    }
+
+    // Redirect to Reset_Password.php with the username in the URL
+    window.location.href = `Reset_Password.php?username=${encodeURIComponent(username)}`;
+  }
+</script>
+
+</body>
+</html>

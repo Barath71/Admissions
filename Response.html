@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Application submitted</title>  
+
+  <style>
+   body {
+    font-family: Arial, Helvetica, sans-serif;
+  background: white;  
+    margin: 0;
+    padding: 20px;
+   }
+       .container {
+      max-width: 600px;
+      text-align: center;
+      margin: auto;
+      background:white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+      h2 {
+      background-color: darkgreen;
+      color: white;
+      text-align: center;
+      padding: 15px 0;
+      margin: -30px -30px 20px -30px;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+
+    img {
+        width: 50px;
+        height: 60px;
+        border-image: round;
+    }
+   
+.back-button {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.back-button button {
+  background-color: #add8e6; /* Light Blue */
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.back-button button:hover {
+  background-color: #007bff; /* Darker Blue on hover */
+}
+
+  </style>
+</head>
+
+<div class="container">
+    
+    <h2>Application submitted</h2>
+    <div>
+        <img src="Tick.png"  alt="submitted">
+        <h3>Thanks For Your Application</h3>
+        <p>We have received your application for the undergraduate program. Our admission team will review your application and get back to you soon.</p>
+        <p>If you have any questions, please contact our admission office.</p>
+    </div>
+
+  <div class="back-button">
+  <button onclick="goHome()">Back to Home</button>
+</div>
+
+<script>
+    function goHome() {
+  window.location.href = "index.html"; // Replace with your home page URL
+}
+
+</script>
+
+</div>
+<body>
