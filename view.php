@@ -1,5 +1,5 @@
 <?php
-// view.php
+
 require_once 'db.php';
 
 

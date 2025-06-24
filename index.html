@@ -123,41 +123,133 @@
   }
 
   // Validate file uploads
-  document.getElementById("appForm").addEventListener("submit", function (e) {
-    const marksheet = document.getElementById("marksheet").files[0];
-    const photo = document.getElementById("photo").files[0];
-     const acknowledge = document.getElementById("acknowledge");
+document.getElementById("appForm").addEventListener("submit", function (e) {
+  const form = this;
 
-    if (marksheet) {
-      if (marksheet.type !== "application/pdf" || marksheet.size > 2 * 1024 * 1024) {
-        alert("12th Marksheet must be a PDF under 2MB.");
-        return;
-      }
-    }
+  // Get form fields
+  const firstName = form.firstName.value.trim();
+  const lastName = form.lastName.value.trim();
+  const gender = form.querySelector('input[name="gender"]:checked');
+  const dob = form.dob.value;
+  const email = form.email.value.trim();
+  const phone = form.phone.value.trim();
+  const address = form.address.value.trim();
+  const group = form.groupSelect.value;
+  const marks = form.marks.value.trim();
+  const course = form.courseSelect.value;
+  const marksheet = form.marksheet.files[0];
+  const photo = form.photo.files[0];
+  const acknowledge = document.getElementById("acknowledge").checked;
 
-    function clearForm() {
-  document.getElementById('appForm').reset();
-  resetCourses(); // if you want to reset the course list
-}
-
-
-    if (photo) {
-      const validTypes = ["image/jpeg", "image/png"];
-      if (!validTypes.includes(photo.type) || photo.size > 500 * 1024) {
-        alert("Photo must be JPG/PNG and under 500KB.");
-        return;
-      }
-    }
-
-           if (!acknowledge.checked) {
-    alert("Please acknowledge the information before submitting."); 
+  // Validation checks
+  if (!firstName) {
+    alert("First Name is required.");
+    form.firstName.focus();
+    e.preventDefault();
+    return;
+  }
+  if (!lastName) {
+    alert("Last Name is required.");
+    form.lastName.focus();
+    e.preventDefault();
+    return;
+  }
+  if (!gender) {
+    alert("Please select your gender.");
+    e.preventDefault();
+    return;
+  }
+  if (!dob) {
+    alert("Date of Birth is required.");
+    form.dob.focus();
+    e.preventDefault();
+    return;
+  }
+  if (!email) {
+    alert("Email is required.");
+    form.email.focus();
+    e.preventDefault();
+    return;
+  }
+  if (!/^\S+@\S+\.\S+$/.test(email)) {
+    alert("Enter a valid email address.");
+    form.email.focus();
+    e.preventDefault();
+    return;
+  }
+  if (!phone) {
+    alert("Phone number is required.");
+    form.phone.focus();
+    e.preventDefault();
+    return;
+  }
+  if (!/^[0-9]{10}$/.test(phone)) {
+    alert("Phone number must be 10 digits.");
+    form.phone.focus();
+    e.preventDefault();
+    return;
+  }
+  if (!address) {
+    alert("Address is required.");
+    form.address.focus();
+    e.preventDefault();
+    return;
+  }
+  if (!group) {
+    alert("Please select a group.");
+    form.groupSelect.focus();
+    e.preventDefault();
+    return;
+  }
+  if (!marks) {
+    alert("Total Marks are required.");
+    form.marks.focus();
+    e.preventDefault();
+    return;
+  }
+  if (!course) {
+    alert("Please select a course.");
+    form.courseSelect.focus();
+    e.preventDefault();
+    return;
+  }
+  if (!marksheet) {
+    alert("Please upload your 12th marksheet.");
+    form.marksheet.focus();
+    e.preventDefault();
+    return;
+  }
+  if (marksheet.size > 2 * 1024 * 1024 || marksheet.type !== "application/pdf") {
+    alert("Marksheet must be a PDF under 2 MB.");
+    form.marksheet.focus();
+    e.preventDefault();
+    return;
+  }
+  if (!photo) {
+    alert("Please upload your photo.");
+    form.photo.focus();
+    e.preventDefault();
+    return;
+  }
+  if (
+    photo.size > 500 * 1024 ||
+    !["image/jpeg", "image/png"].includes(photo.type)
+  ) {
+    alert("Photo must be JPG/PNG and under 500 KB.");
+    form.photo.focus();
+    e.preventDefault();
+    return;
+  }
+  if (!acknowledge) {
+    alert("Please acknowledge the declaration.");
+    document.getElementById("acknowledge").focus();
+    e.preventDefault();
     return;
   }
 
-
-    alert("Form submitted successfully! (Simulation)");
-     // Remove this to enable actual form submission
-  });
+  // All fields are valid
+  // You can also show a final confirm alert here if you wish
+});
 
   // Initialize with default group
   window.onload = updateCourses;
