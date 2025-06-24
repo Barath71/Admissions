@@ -120,14 +120,14 @@
   }
 
   function resetCourses() {
-    updateCourses(); // Reset course list to default based on selected group
+    updateCourses(); 
   }
 
-  // Validate file uploads
+
 document.getElementById("appForm").addEventListener("submit", function (e) {
   const form = this;
 
-  // Get form fields
+ 
   const firstName = form.firstName.value.trim();
   const lastName = form.lastName.value.trim();
   const gender = form.querySelector('input[name="gender"]:checked');
@@ -248,11 +248,9 @@ document.getElementById("appForm").addEventListener("submit", function (e) {
     return;
   }
 
-  // All fields are valid
-  // You can also show a final confirm alert here if you wish
+  
 });
 
-  // Initialize with default group
   window.onload = updateCourses;
 </script>
 </body>
