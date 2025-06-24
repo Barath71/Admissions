@@ -114,9 +114,10 @@ $result = $conn->query($sql);
        <?php while ($row = $result->fetch_assoc()): ?>
 <tr>
   <td><?= $row['id'] ?></td>
-  <td><?= htmlspecialchars($row['first_name'] . " " . $row['last_name']) ?></td>
-  <td><?= htmlspecialchars($row['email']) ?></td>
-  <td><?= htmlspecialchars($row['course']) ?></td>
+<td><?= htmlspecialchars_decode($row['first_name'] . " " . $row['last_name'], ENT_QUOTES) ?></td>
+<td><?= htmlspecialchars_decode($row['email'], ENT_QUOTES) ?></td>
+<td><?= htmlspecialchars_decode($row['course'], ENT_QUOTES) ?></td>
+
   <td>
     <?php
       if ($row['status'] == 1) echo '<span class="status-badge pending">Pending</span>';

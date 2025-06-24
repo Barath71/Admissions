@@ -3,7 +3,7 @@
 require_once 'db.php';
 
 
-
+// Create uploads directory if it doesn't exist
 $uploadDir = "uploads/";
 if (!is_dir($uploadDir)) {
     mkdir($uploadDir, 0755, true);
@@ -18,7 +18,6 @@ $photo = $_FILES['photo']['name'];
 $photo_tmp = $_FILES['photo']['tmp_name'];
 $photo_ext = strtolower(pathinfo($photo, PATHINFO_EXTENSION));
 $photo_path = $uploadDir . uniqid("photo_") . "." . $photo_ext;
-
 
 $marksheet_size = $_FILES['marksheet']['size'];
 $photo_size = $_FILES['photo']['size'];
@@ -51,6 +50,7 @@ $total_marks   = htmlspecialchars($_POST['marks'] ?? '', ENT_QUOTES, 'UTF-8');
 $course        = htmlspecialchars($_POST['courseSelect'] ?? '', ENT_QUOTES, 'UTF-8');
 
 
+// Insert into DB
 $sql = "INSERT INTO applications 
     (first_name, last_name, gender, email, phone, dob, address, group_name, total_marks, course, marksheet_path, photo_path)
     VALUES 
