@@ -144,7 +144,7 @@ $conn->close();
     dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
   }
 
-  // Optional: Hide dropdown when clicking outside
+
   window.addEventListener("click", function(e) {
     if (!e.target.closest('.profile-dropdown')) {
       document.getElementById("profileDropdown").style.display = "none";
@@ -167,7 +167,7 @@ function closeEditModal() {
   document.getElementById('editCourseModal').style.display = 'none';
 }
 
-// Optional: Close modal if clicked outside the modal content
+
 window.onclick = function(event) {
   const modal = document.getElementById('editCourseModal');
   if (event.target === modal) {

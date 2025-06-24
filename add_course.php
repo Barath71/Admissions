@@ -7,7 +7,7 @@ $course = $_POST['course'];
 $description = $_POST['description'];
 $duration = $_POST['duration'];
 
-// Insert course with default active_status = 0 (active)
+
 $sql = "INSERT INTO courses (course, description, duration, active_status) VALUES (?, ?, ?, 0)";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("sss", $course, $description, $duration);

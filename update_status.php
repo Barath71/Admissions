@@ -2,15 +2,15 @@
 require_once 'db.php';
 
 
-// Fix: Get correct POST field names
-$id = $_POST['application_id']; // Corrected name
+
+$id = $_POST['application_id']; 
 $status = $_POST['status'];
 
-// Sanitize and validate
+
 $id = intval($id);
 $status = intval($status);
 
-// Prepare and execute update query
+
 $sql = "UPDATE applications SET status = ? WHERE id = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("ii", $status, $id);

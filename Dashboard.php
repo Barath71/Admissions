@@ -4,11 +4,11 @@ require_once 'db.php';
 
 session_start();
 if (!isset($_SESSION['admin'])) {
-  header("Location: admin.html"); // Redirect to login if not logged in
+  header("Location: admin.html");
   exit();
 }
 
-// Fetch counts
+
 $status_counts = [
   'pending' => 0,
   'accepted' => 0,
@@ -24,7 +24,7 @@ while ($row = $countResult->fetch_assoc()) {
     if ($row['status'] == 3) $status_counts['rejected'] = $row['total'];
 }
 
-// Fetch pending applications
+
 $filterSql = "";
 $statusName = "All Applications";
 

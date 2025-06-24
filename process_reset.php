@@ -28,7 +28,7 @@ if ($row['otp'] !== $otp) {
 // Hash password using SHA-256
 $hashedPassword = hash('sha256', $newPassword);
 
-// Update password
+
 $update = $conn->query("UPDATE users SET password = '$hashedPassword', otp = NULL WHERE username = '$username'");
 
 if ($update) {

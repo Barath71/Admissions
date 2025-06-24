@@ -144,7 +144,7 @@ if (!$app) {
   <div class="field"><div class="label">Address:</div><div class="value"><?= htmlspecialchars($app['address']) ?></div></div>
   <div class="field"><div class="label">Submitted On:</div><div class="value"><?= htmlspecialchars($app['created_at']) ?></div></div>
 
-<!-- Photo and Marksheet Section -->
+
 <div class="card-row">
   <div class="card">
     <div class="label">Photo</div>
@@ -165,7 +165,6 @@ if (!$app) {
   </div>
 </div>
 
-<!-- Status Update Card -->
 <div class="card decision-section">
   <form method="post" action="update_status.php">
     <input type="hidden" name="application_id" value="<?= $app['id'] ?>">
@@ -181,7 +180,7 @@ if (!$app) {
   </form>
 </div>
 
-<!-- Back to Dashboard -->
+
 <div style="text-align:center; margin-top: 20px;">
   <a href="Dashboard.php" class="btn-download">← Back to Dashboard</a>
 </div>
