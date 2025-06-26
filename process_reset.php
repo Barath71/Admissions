@@ -15,7 +15,7 @@ if ($newPassword !== $confirmPassword) {
 }
 
 // Check OTP
-$result = $conn->query("SELECT otp FROM users WHERE username = '$username'");
+$result = $conn->query("SELECT otp FROM admins WHERE username = '$username'");
 if ($result->num_rows !== 1) {
   die("User not found.");
 }
@@ -25,15 +25,16 @@ if ($row['otp'] !== $otp) {
   die("Invalid OTP.");
 }
 
-// Hash password using SHA-256
-$hashedPassword = hash('sha256', $newPassword);
+
+$plainPassword = $newPassword;
 
 
-$update = $conn->query("UPDATE users SET password = '$hashedPassword', otp = NULL WHERE username = '$username'");
+$update = $conn->query("UPDATE admins SET password = '$plainPassword', otp = NULL WHERE username = '$username'");
 
 if ($update) {
-  echo "Password changed successfully. <a href='login.php'>Go to login</a>";
+    echo "<script>alert('Password changed successfully.'); window.location.href='Reset_Password.php';</script>";
 } else {
-  echo "Failed to update password.";
+    echo "<script>alert('Failed to update password.'); window.location.href='Reset_Password.php';</script>";
 }
+
 ?>
