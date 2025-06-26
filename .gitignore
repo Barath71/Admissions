@@ -1,0 +1,16 @@
+# Ignore environment config
+.env
+
+# Ignore Composer dependencies
+/vendor/
+
+# Ignore log files
+*.log
+
+# Ignore backup or temp files
+*.bak
+*.tmp
+
+# Ignore IDE files (optional)
+.vscode/
+.idea/
