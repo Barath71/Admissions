@@ -1,12 +1,10 @@
 # Ignore environment config
 .env
 
-
 # Ignore db settings
 db.php
 
 # Ignore Composer dependencies
-/uploads/
 /vendor/
 
 # Ignore log files
@@ -19,3 +17,6 @@ db.php
 # Ignore IDE files (optional)
 .vscode/
 .idea/
+
+# Ignore uploaded files and photos
+uploads/
