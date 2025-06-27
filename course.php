@@ -87,7 +87,7 @@ while ($row = $result->fetch_assoc()) {
 echo "<tr>
         <td>
           <button class='edit-btn' onclick=\"openEditModal($row_json)\">✎</button>
-          <form method='post' action='delete_course.php' style='display:inline'>
+          <form method='post' action='' style='display:inline'>
             <input type='hidden' name='id' value='" . $row['id'] . "'>
             <button class='delete-btn' onclick='return confirm(\"Are you sure?\")'>🗑</button>
           </form>

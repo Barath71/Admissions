@@ -5,10 +5,9 @@ require_once 'db.php';
 
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-  $user = $_POST['UserName'];
-  $pass = $_POST['Password'];
+  $user = $_POST['UserName'] ?? '';
+  $pass = $_POST['Password'] ?? '';
 
-  
   $stmt = $conn->prepare("SELECT * FROM admins WHERE username = ? LIMIT 1");
   $stmt->bind_param("s", $user);
   $stmt->execute();
@@ -16,9 +15,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
   if ($result->num_rows === 1) {
     $row = $result->fetch_assoc();
-    if ($pass === $row['password']) {
+
+ 
+    $hashedInput = hash("sha256", $pass);
+
+    if ($hashedInput === $row['password']) {
       $_SESSION['admin'] = $row['username'];
-      header("Location: Dashboard.php"); 
+      header("Location: Dashboard.php");
       exit();
     } else {
       echo "<script>alert('Incorrect password'); window.history.back();</script>";
@@ -27,5 +30,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     echo "<script>alert('User not found'); window.history.back();</script>";
   }
 }
+
 $conn->close();
 ?>
