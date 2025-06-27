@@ -79,12 +79,12 @@ if (!isset($_SESSION['admin'])) {
     </thead>
     <tbody>
   <?php
-$conn = new mysqli("localhost", "root", "", "admissions");
+require_once 'db.php';
 $result = $conn->query("SELECT * FROM courses");
 
 while ($row = $result->fetch_assoc()) {
     $row_json = htmlspecialchars(json_encode($row), ENT_QUOTES, 'UTF-8');
-    echo "<tr>
+echo "<tr>
         <td>
           <button class='edit-btn' onclick=\"openEditModal($row_json)\">✎</button>
           <form method='post' action='delete_course.php' style='display:inline'>
@@ -95,8 +95,16 @@ while ($row = $result->fetch_assoc()) {
         <td>" . htmlspecialchars($row['course']) . "</td>
         <td>" . htmlspecialchars($row['description']) . "</td>
         <td>" . htmlspecialchars($row['duration']) . "</td>
-        <td><input type='checkbox' " . ($row['active_status'] == 0 ? "checked" : "") . " disabled></td>
-      </tr>";
+        <td>
+          <label class='switch'>
+           <input type='checkbox'
+           onchange='toggleStatus(" . $row['id'] . ", this.checked)'
+           " . ($row['active_status'] == 0 ? "checked" : "") . ">
+            <span class='slider round'></span>
+          </label>
+        </td>
+     </tr>";
+
 }
 $conn->close();
 ?>
@@ -154,6 +162,24 @@ $conn->close();
 </script>
 
 <script>
+
+function toggleStatus(id, isChecked) {
+  const status = isChecked ? 0 : 1;
+  fetch('active_status.php', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: 'id=' + id + '&active_status=' + status
+  })
+  .then(response => response.text())
+  .then(data => {
+    console.log("Status updated:", data);
+  })
+  .catch(error => {
+    console.error("Error updating status:", error);
+    alert("Failed to update status.");
+  });
+}
+
 function openEditModal(data) {
   document.getElementById('edit_id').value = data.id;
   document.getElementById('edit_course').value = data.course;
