@@ -6,6 +6,7 @@
 db.php
 
 # Ignore Composer dependencies
+/uploads/
 /vendor/
 
 # Ignore log files
