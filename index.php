@@ -56,10 +56,20 @@
         <label>Group</label>
         <select id="groupSelect" name="groupSelect" onchange="updateCourses()">
           <option>-- Select Group --</option>
-          <option value="cse">Computer Science</option>
-          <option value="mech">Mechanical Engineering</option>
-          <option value="civil">Civil Engineering</option>
-          <option value="eee">Electrical and Electronics Engineering</option>
+          <option value="cse">B.E - CSE</option>
+          <option value="mech">B.E - MECH</option>
+          <option value="civil">B.E - CIVIL</option>
+          <option value="eee">B.E - EEE</option>
+          <option value="">B.E - ECE</option>
+          <option value="">B.Sc</option>
+          <option value="">B.com</option>
+          <option value="">BA</option>
+          <option value="">BCA</option>
+          <option value="">MBA</option>
+          <option value="">MCA</option>
+          <option value="">M.Sc</option>
+          <option value="">M.com</option>
+
         </select>
       </div>
       <div class="field">

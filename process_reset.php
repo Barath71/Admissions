@@ -26,10 +26,10 @@ if ($row['otp'] !== $otp) {
 }
 
 
-$plainPassword = $newPassword;
+$hashedPassword = hash("sha256", $newPassword);
 
 
-$update = $conn->query("UPDATE admins SET password = '$plainPassword', otp = NULL WHERE username = '$username'");
+$update = $conn->query("UPDATE admins SET password = '$hashedPassword', otp = NULL WHERE username = '$username'");
 
 if ($update) {
     echo "<script>alert('Password changed successfully.'); window.location.href='Reset_Password.php';</script>";
