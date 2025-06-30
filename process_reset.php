@@ -11,7 +11,7 @@ if (!$username || !$otp || !$newPassword || !$confirmPassword) {
 }
 
 if ($newPassword !== $confirmPassword) {
-  die("Passwords do not match.");
+echo "<script>alert('Password do not match'); window.location.href='Reset_Password.php';</script>";
 }
 
 // Check OTP
@@ -22,7 +22,7 @@ if ($result->num_rows !== 1) {
 
 $row = $result->fetch_assoc();
 if ($row['otp'] !== $otp) {
-  die("Invalid OTP.");
+echo "<script>alert('Invalid OTP.'); window.location.href='Reset_Password.php';</script>";
 }
 
 

@@ -141,18 +141,36 @@
 </form>
 
 <script>
-  function goToResetPage() {
-    const username = document.getElementById("username").value.trim();
+function goToResetPage() {
+  const username = document.getElementById("username").value.trim();
 
-    if (!username) {
-      alert("Please enter your username first.");
-      return;
-    }
-
-    // Redirect to Reset_Password.php with the username in the URL
-    window.location.href = `Reset_Password.php?username=${encodeURIComponent(username)}`;
+  if (!username) {
+    alert("Please enter your username first.");
+    return;
   }
+
+  
+  fetch("checkuser.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: "username=" + encodeURIComponent(username)
+  })
+  .then(response => response.text())
+  .then(data => {
+    if (data.trim() === "exists") {
+     
+      window.location.href = `Reset_Password.php?username=${encodeURIComponent(username)}`;
+    } else {
+      alert("Username not found.");
+    }
+  })
+  .catch(error => {
+    alert("Error checking username.");
+    console.error(error);
+  });
+}
 </script>
+
 
 </body>
 </html>
